@@ -42,14 +42,15 @@ namespace Checkout.Tests
             var expected = new Product
             {
                 Sku = productSku,
-                Price = _productCatalogue.Single(p => p.Sku == productSku).Price
             };
 
             // Act
-            _checkout.Scan(productSku);
+            var result = _checkout.Scan(productSku);
 
             // Assert
-            Assert.Contains(expected, _checkout.Scanned);
+            Assert.True(result);
+            Assert.Single(_checkout.Basket);
+            Assert.Contains(expected.Sku, _checkout.Basket.First().Sku);
         }
     }
 }

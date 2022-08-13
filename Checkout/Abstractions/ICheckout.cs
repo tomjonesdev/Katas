@@ -4,13 +4,13 @@ namespace Checkout.Abstractions
 {
     public interface ICheckout
     {
-        void Scan(
+        bool Scan(
             string productSku);
 
-        List<Product> Scanned { get; set; }
+        List<Product> Basket { get; set; }
 
         int Total
-            => Scanned
+            => Basket
                 .Select(p => p.Price)
                 .Sum();
     }

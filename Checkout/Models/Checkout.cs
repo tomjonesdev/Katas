@@ -16,13 +16,28 @@ namespace Checkout.Models
             _promotions = promotions;
         }
 
-        public List<Product> Scanned { get; set; }
+        public List<Product> Basket { get; set; }
             = new();
 
-        public void Scan(
+        public bool Scan(
             string productSku)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(productSku))
+            {
+                return false;
+            }
+
+            var product = _productCatalogue
+                .FirstOrDefault(p => p.Sku == productSku);
+
+            if (product is null)
+            {
+                return false;
+            }
+
+            Basket.Add(product);
+
+            return true;
         }
     }
 }
