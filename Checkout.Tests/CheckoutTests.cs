@@ -52,5 +52,27 @@ namespace Checkout.Tests
             Assert.Single(_checkout.Basket);
             Assert.Contains(expected.Sku, _checkout.Basket.First().Sku);
         }
+
+        [Fact]
+        public void Total_ReturnsCorrectTotal()
+        {
+            // Arrange
+            var basket = new List<Product>
+            {
+                new() { Sku = "A" },
+                new() { Sku = "B" },
+                new() { Sku = "C" },
+                new() { Sku = "D" },
+            };
+
+            // Act & Assert
+            foreach (var product in basket)
+            {
+                var result = _checkout.Scan(product.Sku);
+                Assert.True(result);
+            }
+
+            Assert.Equal(115, _checkout.Total);
+        }
     }
 }
