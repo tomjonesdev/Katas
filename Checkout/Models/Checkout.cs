@@ -19,7 +19,7 @@ namespace Checkout.Models
         public List<Product> Scanned { get; set; }
             = new();
 
-        public Task ScanAsync(
+        public void Scan(
             string productSku)
         {
             throw new NotImplementedException();

@@ -4,7 +4,7 @@ namespace Checkout.Abstractions
 {
     public interface ICheckout
     {
-        Task ScanAsync(
+        void Scan(
             string productSku);
 
         List<Product> Scanned { get; set; }
