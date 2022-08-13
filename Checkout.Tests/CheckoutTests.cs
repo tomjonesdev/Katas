@@ -29,5 +29,27 @@ namespace Checkout.Tests
                 _productCatalogue,
                 _promotions);
         }
+
+        [Theory]
+        [InlineData("A")]
+        [InlineData("B")]
+        [InlineData("C")]
+        [InlineData("D")]
+        public void Scan_AddsProductToBasket(
+            string productSku)
+        {
+            // Arrange
+            var expected = new Product
+            {
+                Sku = productSku,
+                Price = _productCatalogue.Single(p => p.Sku == productSku).Price
+            };
+
+            // Act
+            _checkout.Scan(productSku);
+
+            // Assert
+            Assert.Contains(expected, _checkout.Scanned);
+        }
     }
 }
