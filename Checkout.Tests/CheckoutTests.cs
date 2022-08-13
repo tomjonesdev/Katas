@@ -74,5 +74,32 @@ namespace Checkout.Tests
 
             Assert.Equal(115, _checkout.Total);
         }
+
+        [Fact]
+        public void Total__Discounted_ReturnsCorrectTotal()
+        {
+            // Arrange
+            var basket = new List<Product>
+            {
+                new() { Sku = "A" },
+                new() { Sku = "B" },
+                new() { Sku = "A" },
+                new() { Sku = "A" },
+                new() { Sku = "B" },
+                new() { Sku = "C" },
+                new() { Sku = "C" },
+                new() { Sku = "D" },
+                new() { Sku = "A" },
+            };
+
+            // Act & Assert
+            foreach (var product in basket)
+            {
+                var result = _checkout.Scan(product.Sku);
+                Assert.True(result);
+            }
+
+            Assert.Equal(280, _checkout.Total);
+        }
     }
 }
