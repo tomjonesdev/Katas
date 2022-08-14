@@ -13,16 +13,16 @@ namespace Checkout.Tests
         {
             _productCatalogue = new()
             {
-                new(){ Sku = "A", Price = 50 },
-                new(){ Sku = "B", Price = 30 },
-                new(){ Sku = "C", Price = 20 },
-                new(){ Sku = "D", Price = 15 },
+                new() { Sku = "A", Price = 50 },
+                new() { Sku = "B", Price = 30 },
+                new() { Sku = "C", Price = 20 },
+                new() { Sku = "D", Price = 15 },
             };
 
             _promotions = new()
             {
-                new(){ Name = "3 for 130", ProductSku = "A", Quantity = 3, Price = 130 },
-                new(){ Name = "2 for 45", ProductSku = "B", Quantity = 2, Price = 45 },
+                new() { Name = "3 for 130", ProductSku = "A", Quantity = 3, Price = 130 },
+                new() { Name = "2 for 45", ProductSku = "B", Quantity = 2, Price = 45 },
             };
 
             _checkout = new Models.Checkout(
@@ -76,7 +76,7 @@ namespace Checkout.Tests
         }
 
         [Fact]
-        public void Total__Discounted_ReturnsCorrectTotal()
+        public void Total_WithMultiBuyDiscounts_ReturnsCorrectTotal()
         {
             // Arrange
             var basket = new List<Product>

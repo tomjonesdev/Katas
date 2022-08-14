@@ -9,9 +9,6 @@ namespace Checkout.Abstractions
 
         List<Product> Basket { get; set; }
 
-        int Total
-            => Basket
-                .Select(p => p.Price)
-                .Sum();
+        int Total { get; }
     }
 }
